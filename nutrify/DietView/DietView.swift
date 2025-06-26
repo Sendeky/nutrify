@@ -11,23 +11,33 @@ struct DietView: View {
     @AppStorage("currentStreak") var currentStreak = 0
     @AppStorage("lastCompletedDate") var lastCompletedDate = ""
     
-    @State private var proteinGrams: Double = 0
-    @State private var calciumMg: Double = 0
-    @State private var zincMg: Double = 0
-    @State private var vitaminDIU: Double = 0
+//    @State private var proteinGrams: Double = 0
+//    @State private var calciumMg: Double = 0
+//    @State private var zincMg: Double = 0
+//    //    @State private var vitaminDIU: Double = 0
+//    @State private var boronMg: Double = 0  // was vitaminDIU
     @State private var showingCustomAdd = false
+    
+    @AppStorage("todayProtein") var todayProtein: Double = 0
+    @AppStorage("todayCalcium") var todayCalcium: Double = 0
+    @AppStorage("todayZinc") var todayZinc: Double = 0
+    @AppStorage("todayBoron") var todayBoron: Double = 0
+    @AppStorage("lastDietDate") var lastDietDate = ""
     
     // Daily targets
     let proteinTarget: Double = 100
     let calciumTarget: Double = 1000
     let zincTarget: Double = 10
-    let vitaminDTarget: Double = 600
+    //    let vitaminDTarget: Double = 600
+    let boronTarget: Double = 10  // was vitaminDTarget: Double = 600
+    
     
     var allGoalsComplete: Bool {
-        proteinGrams >= proteinTarget &&
-        calciumMg >= calciumTarget &&
-        zincMg >= zincTarget &&
-        vitaminDIU >= vitaminDTarget
+        todayProtein >= proteinTarget &&
+        todayCalcium >= calciumTarget &&
+        todayZinc >= zincTarget &&
+        //        vitaminDIU >= vitaminDTarget
+        todayBoron >= boronTarget  // was vitaminDIU >= vitaminDTarget
     }
     
     var body: some View {
@@ -41,14 +51,17 @@ struct DietView: View {
                     
                     // Nutrient rings
                     NutrientRingsView(
-                        protein: proteinGrams,
+                        protein: todayProtein,
                         proteinTarget: proteinTarget,
-                        calcium: calciumMg,
+                        calcium: todayCalcium,
                         calciumTarget: calciumTarget,
-                        zinc: zincMg,
+                        zinc: todayZinc,
                         zincTarget: zincTarget,
-                        vitaminD: vitaminDIU,
-                        vitaminDTarget: vitaminDTarget
+                        //                        vitaminD: vitaminDIU,
+                        //                        vitaminDTarget: vitaminDTarget
+                        boron: todayBoron,
+                        boronTarget: boronTarget  // was vitaminD: vitaminDIU, vitaminDTarget: vitaminDTarget
+                        
                     )
                     .padding(.horizontal)
                     
@@ -118,16 +131,18 @@ struct DietView: View {
             }
             .onAppear {
                 checkStreakStatus()
+                checkAndResetIfNewDay()
             }
         }
     }
     
     private func addNutrients(_ nutrients: Nutrients) {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-            proteinGrams += nutrients.protein
-            calciumMg += nutrients.calcium
-            zincMg += nutrients.zinc
-            vitaminDIU += nutrients.vitaminD
+            todayProtein += nutrients.protein
+            todayCalcium += nutrients.calcium
+            todayZinc += nutrients.zinc
+//            vitaminDIU += nutrients.vitaminD
+            todayBoron += nutrients.boron  // was vitaminDIU += nutrients.vitaminD
         }
         
         checkGoalsAndUpdateStreak()
@@ -151,6 +166,18 @@ struct DietView: View {
         if lastCompletedDate != today {
             currentStreak += 1
             lastCompletedDate = today
+        }
+    }
+    
+    private func checkAndResetIfNewDay() {
+        let today = DateFormatter.dateOnly.string(from: Date())
+        if lastDietDate != today {
+            // It's a new day, reset nutrients
+            todayProtein = 0
+            todayCalcium = 0
+            todayZinc = 0
+            todayBoron = 0
+            lastDietDate = today
         }
     }
 }

@@ -12,7 +12,8 @@ struct Nutrients {
     let protein: Double
     let calcium: Double
     let zinc: Double
-    let vitaminD: Double
+//    let vitaminD: Double
+    let boron: Double  // was vitaminD
 }
 
 // Food types
@@ -45,49 +46,49 @@ enum QuickAddFood: String, CaseIterable {
         switch self {
         case .redMeat:
             return [
-                ("3 oz", Nutrients(protein: 22, calcium: 15, zinc: 5.3, vitaminD: 0)),
-                ("6 oz", Nutrients(protein: 44, calcium: 30, zinc: 10.6, vitaminD: 0))
+                ("3 oz", Nutrients(protein: 22, calcium: 15, zinc: 5.3, boron: 0.0043)),
+                ("6 oz", Nutrients(protein: 44, calcium: 30, zinc: 10.6, boron: 0.0086))
             ]
         case .eggs:
             return [
-                ("1 large", Nutrients(protein: 6, calcium: 25, zinc: 0.5, vitaminD: 40)),
-                ("2 large", Nutrients(protein: 12, calcium: 50, zinc: 1.0, vitaminD: 80)),
-                ("3 large", Nutrients(protein: 18, calcium: 75, zinc: 1.5, vitaminD: 120))
+                ("1 large", Nutrients(protein: 6, calcium: 25, zinc: 0.5, boron: 0.12)),
+                ("2 large", Nutrients(protein: 12, calcium: 50, zinc: 1.0, boron: 0.24)),
+                ("3 large", Nutrients(protein: 18, calcium: 75, zinc: 1.5, boron: 0.36))
             ]
         case .milk:
             return [
-                ("1 cup", Nutrients(protein: 8, calcium: 300, zinc: 1.0, vitaminD: 120)),
-                ("2 cups", Nutrients(protein: 16, calcium: 600, zinc: 2.0, vitaminD: 240))
+                ("1 cup", Nutrients(protein: 8, calcium: 300, zinc: 1.0, boron: 0.055)),
+                ("2 cups", Nutrients(protein: 16, calcium: 600, zinc: 2.0, boron: 0.11))
             ]
         case .yogurt:
             return [
-                ("1 cup", Nutrients(protein: 10, calcium: 450, zinc: 1.7, vitaminD: 80)),
-                ("½ cup", Nutrients(protein: 5, calcium: 225, zinc: 0.85, vitaminD: 40))
+                ("1 cup", Nutrients(protein: 10, calcium: 450, zinc: 1.7, boron: 0.001)),
+                ("½ cup", Nutrients(protein: 5, calcium: 225, zinc: 0.85, boron: 0.0005))
             ]
         case .almonds:
             return [
-                ("1 oz", Nutrients(protein: 6, calcium: 75, zinc: 0.9, vitaminD: 0)),
-                ("¼ cup", Nutrients(protein: 7.5, calcium: 94, zinc: 1.1, vitaminD: 0))
+                ("1 oz", Nutrients(protein: 6, calcium: 75, zinc: 0.9, boron: 1.5792)),
+                ("¼ cup", Nutrients(protein: 7.5, calcium: 94, zinc: 1.1, boron: 1.974))
             ]
         case .cashews:
             return [
-                ("1 oz", Nutrients(protein: 5, calcium: 10, zinc: 1.6, vitaminD: 0)),
-                ("¼ cup", Nutrients(protein: 6.25, calcium: 12.5, zinc: 2.0, vitaminD: 0))
+                ("1 oz", Nutrients(protein: 5, calcium: 10, zinc: 1.6, boron: 0.326)),
+                ("¼ cup", Nutrients(protein: 6.25, calcium: 12.5, zinc: 2.0, boron: 0.374))
             ]
         case .raisins:
             return [
-                ("¼ cup", Nutrients(protein: 1, calcium: 20, zinc: 0.1, vitaminD: 0)),
-                ("½ cup", Nutrients(protein: 2, calcium: 40, zinc: 0.2, vitaminD: 0))
+                ("¼ cup", Nutrients(protein: 1, calcium: 20, zinc: 0.1, boron: 0.95)),
+                ("½ cup", Nutrients(protein: 2, calcium: 40, zinc: 0.2, boron: 1.9))
             ]
         case .avocado:
             return [
-                ("½ avocado", Nutrients(protein: 2, calcium: 12, zinc: 0.6, vitaminD: 0)),
-                ("1 avocado", Nutrients(protein: 4, calcium: 24, zinc: 1.2, vitaminD: 0))
+                ("½ avocado", Nutrients(protein: 2, calcium: 12, zinc: 0.6, boron: 0.642)),
+                ("1 avocado", Nutrients(protein: 4, calcium: 24, zinc: 1.2, boron: 1.284))
             ]
         case .cheese:
             return [
-                ("1 oz", Nutrients(protein: 7, calcium: 200, zinc: 0.9, vitaminD: 6)),
-                ("2 oz", Nutrients(protein: 14, calcium: 400, zinc: 1.8, vitaminD: 12))
+                ("1 oz", Nutrients(protein: 7, calcium: 200, zinc: 0.9, boron: 0.0054)),
+                ("2 oz", Nutrients(protein: 14, calcium: 400, zinc: 1.8, boron: 0.0108))
             ]
         }
     }
@@ -155,7 +156,7 @@ struct PortionSelectorView: View {
                                     NutrientLabel("P", value: portion.nutrients.protein, unit: "g", color: .red)
                                     NutrientLabel("Ca", value: portion.nutrients.calcium, unit: "mg", color: .green)
                                     NutrientLabel("Zn", value: portion.nutrients.zinc, unit: "mg", color: .purple)
-                                    NutrientLabel("D", value: portion.nutrients.vitaminD, unit: "IU", color: .orange)
+                                    NutrientLabel("B", value: portion.nutrients.boron, unit: "mg", color: .orange)
                                 }
                             }
                             .padding()

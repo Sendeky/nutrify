@@ -14,17 +14,27 @@ struct NutrientRingsView: View {
     let calciumTarget: Double
     let zinc: Double
     let zincTarget: Double
-    let vitaminD: Double
-    let vitaminDTarget: Double
+//    let vitaminD: Double
+//    let vitaminDTarget: Double
+    let boron: Double  // was vitaminD
+    let boronTarget: Double  // was vitaminDTarget
+
     
     var body: some View {
         VStack(spacing: 20) {
             // Main rings display
             ZStack {
                 // Vitamin D - Outermost ring
+//                RingView(
+//                    progress: min(vitaminD / vitaminDTarget, 1.0),
+//                    color: .orange,
+//                    lineWidth: 20,
+//                    radius: 85
+//                )
+                // Boron - Outermost ring
                 RingView(
-                    progress: min(vitaminD / vitaminDTarget, 1.0),
-                    color: .orange,
+                    progress: min(boron / boronTarget, 1.0),
+                    color: .blue,  // was .orange
                     lineWidth: 20,
                     radius: 85
                 )
@@ -78,12 +88,19 @@ struct NutrientRingsView: View {
                     unit: "mg",
                     color: .purple
                 )
+//                NutrientRow(
+//                    name: "Vitamin D",
+//                    current: vitaminD,
+//                    target: vitaminDTarget,
+//                    unit: "IU",
+//                    color: .orange
+//                )
                 NutrientRow(
-                    name: "Vitamin D",
-                    current: vitaminD,
-                    target: vitaminDTarget,
-                    unit: "IU",
-                    color: .orange
+                    name: "Boron",  // was "Vitamin D"
+                    current: boron,
+                    target: boronTarget,
+                    unit: "mg",  // was "IU"
+                    color: .blue  // was .orange
                 )
             }
             .padding()

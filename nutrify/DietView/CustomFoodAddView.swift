@@ -15,11 +15,12 @@ struct CustomFoodAddView: View {
     @State private var protein = ""
     @State private var calcium = ""
     @State private var zinc = ""
-    @State private var vitaminD = ""
+//    @State private var vitaminD = ""
+    @State private var boron = ""
     @FocusState private var focusedField: Field?
     
     enum Field {
-        case name, protein, calcium, zinc, vitaminD
+        case name, protein, calcium, zinc, boron
     }
     
     var body: some View {
@@ -70,16 +71,28 @@ struct CustomFoodAddView: View {
                             .foregroundStyle(.secondary)
                     }
                     
+//                    HStack {
+//                        Label("Vitamin D", systemImage: "circle.fill")
+//                            .foregroundStyle(.orange)
+//                        Spacer()
+//                        TextField("0.0", text: $vitaminD)
+//                            .keyboardType(.decimalPad)
+//                            .multilineTextAlignment(.trailing)
+//                            .focused($focusedField, equals: .vitaminD)
+//                            .frame(width: 80)
+//                        Text("IU")
+//                            .foregroundStyle(.secondary)
+//                    }
                     HStack {
-                        Label("Vitamin D", systemImage: "circle.fill")
-                            .foregroundStyle(.orange)
+                        Label("Boron", systemImage: "circle.fill")
+                            .foregroundStyle(.blue)
                         Spacer()
-                        TextField("0.0", text: $vitaminD)
+                        TextField("0.0", text: $boron)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
-                            .focused($focusedField, equals: .vitaminD)
+                            .focused($focusedField, equals: .boron)
                             .frame(width: 80)
-                        Text("IU")
+                        Text("mg")
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -112,7 +125,8 @@ struct CustomFoodAddView: View {
             protein: Double(protein) ?? 0,
             calcium: Double(calcium) ?? 0,
             zinc: Double(zinc) ?? 0,
-            vitaminD: Double(vitaminD) ?? 0
+//            vitaminD: Double(vitaminD) ?? 0
+            boron: Double(boron) ?? 0
         )
         onAdd(nutrients)
         dismiss()

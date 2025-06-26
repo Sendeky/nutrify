@@ -41,35 +41,22 @@ struct MainView: View {
 
 // DietView is now in its own file
 
-struct ExerciseView: View {
-    var body: some View {
-        NavigationStack {
-            ZStack {
-                Color(.systemBackground)
-                    .ignoresSafeArea()
-                
-                Text("Exercise Tracking")
-                    .font(.largeTitle)
-            }
-            .navigationTitle("Exercise")
-        }
-    }
-}
+// ExerciseView is now in its own file
 
-struct RecoveryView: View {
-    var body: some View {
-        NavigationStack {
-            ZStack {
-                Color(.systemBackground)
-                    .ignoresSafeArea()
-                
-                Text("Recovery Tracking")
-                    .font(.largeTitle)
-            }
-            .navigationTitle("Recovery")
-        }
-    }
-}
+//struct RecoveryView: View {
+//    var body: some View {
+//        NavigationStack {
+//            ZStack {
+//                Color(.systemBackground)
+//                    .ignoresSafeArea()
+//                
+//                Text("Recovery Tracking")
+//                    .font(.largeTitle)
+//            }
+//            .navigationTitle("Recovery")
+//        }
+//    }
+//}
 
 #Preview {
     MainView()

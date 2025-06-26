@@ -110,6 +110,13 @@ struct SettingsView: View {
                         Text("1.0.0")
                             .foregroundStyle(.secondary)
                     }
+                    NavigationLink(destination: SourcesView()) {
+                        Label("Sources & References", systemImage: "book")
+                    }
+                    
+                    NavigationLink(destination: DisclaimerView()) {
+                        Label("Health Disclaimer", systemImage: "exclamationmark.shield")
+                    }
                     
                     Button(action: {
                         showingResetAlert = true
